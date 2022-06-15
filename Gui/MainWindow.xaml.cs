@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using Entities;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace Gui
         public MainWindow()
         {
             InitializeComponent();
+            WeatherService weatherService = new();
+            string weather = weatherService.GetWeather();
             try
             {
                 repo = new();
