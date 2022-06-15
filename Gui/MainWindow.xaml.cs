@@ -26,8 +26,7 @@ namespace Gui
         public MainWindow()
         {
             InitializeComponent();
-            WeatherService weatherService = new();
-            string weather = weatherService.GetWeather();
+          
             try
             {
                 repo = new();
