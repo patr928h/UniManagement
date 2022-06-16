@@ -10,13 +10,23 @@ namespace Services
     {
         public string GetWeather()
         {
+            //URL to the API:
             string url = "https://api.openweathermap.org/data/2.5/forecast?id=2610613&appid=e35a01d978426178c1879587b8272cfd";
-            string json = "";
+           string json = "";
+           // Create a web client:
             WebClient client = new();
+            //Get the data:
             json = client.DownloadString(url);
+            // Deserialize the data, i.e. convert the JSON to c# objects:
             Root rootData = JsonConvert.DeserializeObject<Root>(json);
+            // Get the specific temperature:
             double temperature = rootData.list[0].main.temp;
-            return $"{temperature - 273.15:f1} °C";
+            // Get the specific weather description:
+            string desc = rootData.list[0].weather[0].description;
+            // Get the icon
+            string icon = rootData.list[0].weather[0].icon;
+            // Return the weather:
+            return $"{desc},{temperature - 273.15:f1} °C";
         }
     }
     public class City
